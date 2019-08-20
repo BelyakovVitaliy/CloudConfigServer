@@ -11,12 +11,16 @@ import java.util.stream.Collectors;
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
 
+    private final ApplicationContext applicationContext;
+
     @Autowired
-    private ApplicationContext applicationContext;
+    public RestController(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
 
 
     @GetMapping("/showAllBeans")
-    public List<Class<? extends String>> getAllBeans() {
-        return Arrays.stream(applicationContext.getBeanDefinitionNames()).map(String::getClass).collect(Collectors.toList());
+    public List<String> getAllBeans() {
+        return Arrays.stream(applicationContext.getBeanDefinitionNames()).collect(Collectors.toList());
     }
 }
