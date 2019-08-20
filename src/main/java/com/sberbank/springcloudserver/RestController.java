@@ -18,5 +18,11 @@ public class RestController {
     @GetMapping("/showAllBeans")
     public List<Class<? extends String>> getAllBeans() {
         return Arrays.stream(applicationContext.getBeanDefinitionNames()).map(String::getClass).collect(Collectors.toList());
+
+
+
+
+
+
     }
 }
